@@ -1,4 +1,5 @@
 SET query = 'Hello world';
+SET query2 = (select REGEXP_REPLACE(lower($query), listagg(distinct lower(<location_field>), ' *| *'),  ' ') from <location_table>);
 
 /* ##################################################
 ## CREATE l2_NORM TF_IDF MATRIX BY LETTER FROM STRING
@@ -12,7 +13,7 @@ SET query = 'Hello world';
 --     SELECT
 --       id
 --       , original_text
---       , REGEXP_REPLACE(LOWER(original_text), '[^a-zA-Z0-9 ]', '') parsed_text
+--       , REGEXP_REPLACE(REGEXP_REPLACE(LOWER(original_text) ,'[^a-zA-Z0-9 \u4E00-\u9FFF]'), ' +', ' ') AS parsed_text
 --       , ROW_NUMBER() OVER(PARTITION BY id ORDER BY id) sub_int
 --       , SUBSTR(parsed_text, sub_int, 1) unigram
 --       , SUBSTR(parsed_text, sub_int, 2) bigram
@@ -53,7 +54,7 @@ SET query = 'Hello world';
 --     SELECT
 --       id
 --       , original_text
---       , bigram AS term
+--       , bigram_skip AS term
 --       , count(*) AS text_frequency
 --     FROM tokenisation
 --     WHERE LENGTH(REPLACE(bigram_skip,' ')) = 2
@@ -87,7 +88,7 @@ SET query = 'Hello world';
 --     SELECT
 --       id
 --       , original_text
---       , SPLIT(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(original_text), '[^a-zA-Z0-9 ]', ''), ' +', ' '), ' ') parsed_text
+--       , SPLIT(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(original_text), '[^a-zA-Z0-9 \u4E00-\u9FFF]', ''), ' +', ' '), ' ') parsed_text
 --       , REPLACE(f1.value, '"') unigram
 --       , TRIM(LAG(REPLACE(f1.value, '"'), 1) OVER(PARTITION BY id ORDER BY f1.index ASC) || ' ' || REPLACE(f1.value, '"')) bigram
 --       , TRIM(LAG(REPLACE(f1.value, '"'), 2) OVER(PARTITION BY id ORDER BY f1.index ASC) || ' ' || LAG(REPLACE(f1.value, '"'), 1) OVER(PARTITION BY id ORDER BY f1.index ASC) || ' ' || REPLACE(f1.value, '"')) trigram
@@ -160,7 +161,7 @@ WITH tokenisation AS (
     SELECT
       1 AS id
       , $query AS original_text
-      , REGEXP_REPLACE(LOWER(original_text), '[^a-zA-Z0-9 ]', '') parsed_text
+      , REGEXP_REPLACE(LOWER(original_text), '[^a-zA-Z0-9 \u4E00-\u9FFF]', '') parsed_text
       , ROW_NUMBER() OVER(PARTITION BY id ORDER BY id) sub_int
       , SUBSTR(parsed_text, sub_int, 1) unigram
       , SUBSTR(parsed_text, sub_int, 2) bigram
