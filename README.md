@@ -15,7 +15,7 @@ So far it consists of two sub-folders:
 <h3>Weighted Least Squares UDFs:</h3>
 <ul>
 <li>Calculates the alpha and beta required for a univariate weighted least squares regression</li>
-<li>UDFs include partition windows so multiple models can be trained on different cuts of the same table</li>
+<li>UDFs include partition windows so multiple models can be trained on different cuts of the same table (and tested on other cuts!)</li>
 <li>Added example comments to show how to extend to multivariate regressions if required</li>
 <li>Also includes MAE and MAPE calculations to assess performance on training data</li>
 </ul>
