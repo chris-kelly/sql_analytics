@@ -25,6 +25,8 @@ returns FLOAT
 AS
 $$
 (SUM(y*weight) OVER()) / (SUM(weight) OVER()) - (beta * (SUM(X*weight) OVER()) / (SUM(weight) OVER()))
+-- MULTIVARIATE:
+-- (SUM(y*weight) OVER()) / (SUM(weight) OVER()) - ((beta_1 * (SUM(X1*weight) OVER()) - beta_2 * (SUM(X2*weight) OVER())) / (SUM(weight) OVER()))
 $$;
 
 CREATE OR REPLACE FUNCTION calculate_wmape(y float, y_hat float, weight float)
