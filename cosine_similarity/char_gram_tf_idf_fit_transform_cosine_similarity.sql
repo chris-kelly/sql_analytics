@@ -1,9 +1,3 @@
-/*
-We need to match non-exact ingredients between suppliers and restaurants in Editions sites.
-We do this by finding the cosine-similarity between all the combinations and ranking them
- */
-
-
 /* ################################################################################
 (1) Fit TF-IDF to the 'training' data
  ################################################################################ */
