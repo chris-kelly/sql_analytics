@@ -3,7 +3,7 @@
 This is a repository to show that analytical things can be done in SQL :P
 All are written as user-defined functions (UDFs) compatible with snowflake.
 
-<a href = "https://github.com/chris-kelly/sql_analytics/blob/master/ARIMA.sql"><h3>RBF Kernel smoothing UDFs:</h3></a>
+<a href = "https://github.com/chris-kelly/sql_analytics/blob/master/RBF_kernel_smoothing.sql"><h3>RBF Kernel smoothing UDFs:</h3></a>
 <ul>
 <li>Calculates the gaussian kernel (1D) - used in anomaly detection</li>
 <li>Can choose the level of smoothing to apply (includes 'rule-of-thumb' measure)</li>
