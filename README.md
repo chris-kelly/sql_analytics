@@ -3,7 +3,7 @@
 This is a repository to show that analytical things can be done in SQL :P
 All are written as user-defined functions (UDFs) compatible with snowflake.
 
-<h3>RBF Kernel smoothing:</h3>
+<a href = "https://github.com/chris-kelly/sql_analytics/blob/master/ARIMA.sql"><h3>RBF Kernel smoothing UDFs:</h3></a>
 <ul>
 <li>Calculates the gaussian kernel (1D) - used in anomaly detection</li>
 <li>Can choose the level of smoothing to apply (includes 'rule-of-thumb' measure)</li>
@@ -16,7 +16,7 @@ All are written as user-defined functions (UDFs) compatible with snowflake.
 <img src='img/rbf_kernel_graph.png'>
 <br>
 
-<h3>Weighted Least Squares UDFs:</h3>
+<a href = "https://github.com/chris-kelly/sql_analytics/blob/master/WLS.sql"><h3>Weighted Least Squares UDFs:</h3></a>
 <ul>
 <li>Calculates the alpha and beta required for a univariate weighted least squares regression</li>
 <li>UDFs include partition windows so multiple models can be trained on different cuts of the same table (and tested on other cuts!)</li>
@@ -31,7 +31,7 @@ All are written as user-defined functions (UDFs) compatible with snowflake.
 <img src='img/WLS_graph.png'>
 <br>
 
-<h3>Cosine similarity between text strings:</h3>
+<a href = "https://github.com/chris-kelly/sql_analytics/blob/master/TFIDF_CosineSimilarity.sql"><h3>TF-IDF, Cosine Similarity UDFs between sets of strings:</h3></a>
 <ul>
 <li>Calculates the cosine similarity between every combination of two tables of strings.</li>
 <li>It fits TF-IDF for tokenisation (unigram, bigram, trigram)</li>
