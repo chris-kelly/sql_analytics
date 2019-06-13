@@ -1,21 +1,47 @@
 <h1>SQL Analytics</h1>
 
 This is a repository to show that analytical things can be done in SQL :P
+All are written as user-defined functions (UDFs) compatible with snowflake.
 
-So far it consists of two sub-folders:
-
-<h3>Cosine similarity between text strings:</h3>
+<h3>RBF Kernel smoothing:</h3>
 <ul>
-<li>Calculates the cosine similarity between every combination of two tables of strings.</li>
-<li>It fits TF-IDF for tokenisation (unigram, bigram, trigram, bigram-skip) for one column, and transforms the other.</li>
-<li>It then takes advantage of L2-normalisation as a cheeky math hack to use a linear kernel instead to calculate cosine similarity.</li>
-<li>So it essentially just creates a sum product on the left-join to get a dot product :D</li>
+<li>Calculates the gaussian kernel (1D) - used in anomaly detection</li>
+<li>Can choose the level of smoothing to apply (includes 'rule-of-thumb' measure)</li>
+<li>Can proportionally decrease smoothness at edges by decreasing sigma by euclidean similarity</li>
 </ul>
+
+<img src='img/rbf_kernel_numbers.png'>
+<br>
+<br>
+<img src='img/rbf_kernel_graph.png'>
+<br>
 
 <h3>Weighted Least Squares UDFs:</h3>
 <ul>
 <li>Calculates the alpha and beta required for a univariate weighted least squares regression</li>
 <li>UDFs include partition windows so multiple models can be trained on different cuts of the same table (and tested on other cuts!)</li>
-<li>Added example comments to show how to extend to multivariate regressions if required</li>
+<li>Added example comments to show how to extend to multivariate regressions if required (note in the example below, the x1 value has been log transformed for the beta calc)</li>
 <li>Also includes MAE and MAPE calculations to assess performance on training data</li>
+
 </ul>
+
+<img src='img/WLS_sql.png'>
+<br>
+<br>
+<img src='img/WLS_graph.png'>
+<br>
+
+<h3>Cosine similarity between text strings:</h3>
+<ul>
+<li>Calculates the cosine similarity between every combination of two tables of strings.</li>
+<li>It fits TF-IDF for tokenisation (unigram, bigram, trigram)</li>
+<li>It then takes advantage of L2-normalisation as a cheeky math hack to use a linear kernel instead to calculate cosine similarity.</li>
+<li>So it essentially just creates a sum product on the left-join to get a dot product :D</li>
+</ul>
+
+<img src='img/L2_TF_IDF_UniBiTriGram.png'>
+<br>
+<br>
+<img src='img/CosineSimilarity.png'>
+<br>
+
